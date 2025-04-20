@@ -33,7 +33,7 @@ let gameOver = false;
 const cheetoImg = new Image();
 cheetoImg.src = "https://i.imgur.com/zD1F5d8.png"; // Cheeto icon
 const chickenImg = new Image();
-chickenImg.src = "https://i.imgur.com/UCeUUGR.png"; // Chicken leg icon
+chickenImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(1).png"; // Chicken leg icon
 const bucketImg = new Image();
 bucketImg.src = "https://i.imgur.com/UvF7rBM.png"; // KFC bucket
 
