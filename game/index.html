@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catch the Crunch</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff0f0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background: url('https://i.imgur.com/E7WxNTr.png'); /* Optional KFC background */
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let bucket = { x: 160, y: 520, width: 80, height: 80, speed: 7 };
+let items = [];
+let score = 0;
+let gameOver = false;
+
+const cheetoImg = new Image();
+cheetoImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(2).png?raw=true"; // Cheeto icon
+const chickenImg = new Image();
+chickenImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(1).png"; // Chicken leg icon
+const bucketImg = new Image();
+bucketImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview.png?raw=true"; // KFC bucket
+
+function drawBucket() {
+  ctx.drawImage(bucketImg, bucket.x, bucket.y, bucket.width, bucket.height);
+}
+
+function spawnItem() {
+  const type = Math.random() < 0.5 ? "cheeto" : "chicken";
+  items.push({
+    x: Math.random() * 360,
+    y: -40,
+    width: 40,
+    height: 40,
+    speed: 2 + Math.random() * 3,
+    type: type
+  });
+}
+
+function drawItems() {
+  items.forEach((item) => {
+    const img = item.type === "cheeto" ? cheetoImg : chickenImg;
+    ctx.drawImage(img, item.x, item.y, item.width, item.height);
+  });
+}
+
+function moveItems() {
+  items.forEach((item, index) => {
+    item.y += item.speed;
+    if (
+      item.y + item.height > bucket.y &&
+      item.x < bucket.x + bucket.width &&
+      item.x + item.width > bucket.x
+    ) {
+      score += item.type === "cheeto" ? 10 : 5;
+      items.splice(index, 1);
+    } else if (item.y > canvas.height) {
+      items.splice(index, 1);
+    }
+  });
+}
+
+function drawScore() {
+  ctx.fillStyle = "#000";
+  ctx.font = "20px Arial";
+  ctx.fillText("Score: " + score, 10, 25);
+}
+
+function gameLoop() {
+  if (gameOver) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBucket();
+  drawItems();
+  moveItems();
+  drawScore();
+  requestAnimationFrame(gameLoop);
+}
+
+setInterval(spawnItem, 1000);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft" && bucket.x > 0) bucket.x -= bucket.speed;
+  if (e.key === "ArrowRight" && bucket.x + bucket.width < canvas.width) bucket.x += bucket.speed;
+});
+
+gameLoop();
+</script>
+</body>
+</html>
