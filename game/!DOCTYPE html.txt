@@ -31,7 +31,7 @@ let score = 0;
 let gameOver = false;
 
 const cheetoImg = new Image();
-cheetoImg.src = "https://i.imgur.com/zD1F5d8.png"; // Cheeto icon
+cheetoImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(2).png?raw=true"; // Cheeto icon
 const chickenImg = new Image();
 chickenImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(1).png"; // Chicken leg icon
 const bucketImg = new Image();
