@@ -35,7 +35,7 @@ cheetoImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-remo
 const chickenImg = new Image();
 chickenImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview%20(1).png"; // Chicken leg icon
 const bucketImg = new Image();
-bucketImg.src = "https://i.imgur.com/UvF7rBM.png"; // KFC bucket
+bucketImg.src = "https://github.com/abernaaa/kfc-cheetos/blob/main/game/OIP-removebg-preview.png?raw=true"; // KFC bucket
 
 function drawBucket() {
   ctx.drawImage(bucketImg, bucket.x, bucket.y, bucket.width, bucket.height);
